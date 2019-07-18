@@ -79,6 +79,13 @@ window.addEventListener('load', () => {
             const { base, rates } = response.data;
             const html = ratesTemplate({ base, date, rates });
             $('#historical-table').html(html);
+            let container = document.querySelector('.segment');
+            let table = container.getElementsByTagName('table');
+        
+            let tl = new TimelineLite();
+            tl.set(table, {opacity: 0})
+            tl.to(table, 1, {y: 100, opacity: 1, ease: Sine.easeOut})
+
         } catch (error) {
             showError(error);
         } finally {
